@@ -1,0 +1,22 @@
+.svg-icon {
+		width: 16px; height: 16px;
+		vertical-align: -3px;
+		fill: currentColor;
+		overflow: hidden;
+}
+.svg-icon-bars {
+	width: 18px;
+	height: 18px;
+	vertical-align: -4px;
+	margin-left: 10px;
+}
+body {
+	margin: 0;
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  /* margin-top: 60px; */
+}
