@@ -1,76 +1,35 @@
 <template>
   <div class="admin-container" :class="{hideSlidebar:isCollapse}"> 
-    <el-menu default-active="1-4-1" class="el-menu-container" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-      <el-submenu index="1">
-        <template slot="title">
-          <svg class="svg-icon" aria-hidden="true">
-            <use xlink:href="#tmc-shouye"></use>
-          </svg>
-          <span slot="title">首页</span>
-        </template>
-        <el-menu-item-group>
-          <span slot="title">分组一</span>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <span slot="title">选项4</span>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="2">
-        <svg class="svg-icon" aria-hidden="true">
-          <use xlink:href="#tmc-huiyi2"></use>
-        </svg>
-        <span slot="title">会议</span>
-      </el-menu-item>
-      <el-menu-item index="3">
-        <svg class="svg-icon" aria-hidden="true">
-          <use xlink:href="#tmc-wodebisai"></use>
-        </svg>
-        <span slot="title">比赛</span>
-      </el-menu-item>
-    </el-menu>
+    <slider-bar :isCollapse="isCollapse"></slider-bar>
     <div class="main-container">
-      <el-menu class="navbar"  mode="horizontal">
-        <div class="crumbs">
-          <svg class="svg-icon svg-icon-bars" aria-hidden="true" @click="slideMenu">
-            <use xlink:href="#tmc-bars"></use>
-          </svg>
-        </div>
-        <el-breadcrumb class="levelbar" separator="/">
-          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-          <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-        </el-breadcrumb>
-      </el-menu>
+      <nav-bar></nav-bar>
     </div>
   </div>
 </template>
 
 <script>
+import SliderBar from '../layout/slidebar'
+import NavBar from '../layout/navbar'
+import store from '../../store/index'
+
 export default {
   name: 'index',
+  components: {
+    SliderBar,
+    NavBar
+  },
   data () {
     return {
-      isCollapse: true
+      
+    }
+  },
+  computed: {
+    isCollapse () {
+      return store.state.isCollapse
     }
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    slideMenu() {
-      let self = this
-      self.isCollapse = !self.isCollapse
-    }
+    
   }
 }
 </script>
