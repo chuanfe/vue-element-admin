@@ -42,6 +42,13 @@
 </template>
 <script>
 export default {
+	mounted () {
+		let self = this;
+		let _hash = document.location.hash
+		if(_hash == '#signin') {
+			self.active.index = 1
+		}
+	},
   data () {
 		return {
 			navigate: [{
@@ -65,8 +72,9 @@ export default {
 	methods: {
 		toggle(index, name) {
 			let self = this
+			window.location.href = '/account#'+name
 			self.active.index = index
-			self.active.name = name
+			// self.active.name = name
 		}
 	}
 }
@@ -77,6 +85,7 @@ export default {
 	margin: 100px auto;
 	.login-tab-navs {
 		margin: 20px;
+		text-align: center;
 		.nav-slider {
 			position: relative;
 			display: inline-block;

@@ -21,18 +21,25 @@
           <el-menu-item index="1-4-1">选项1</el-menu-item>
         </el-submenu>
       </el-submenu>
-      <el-menu-item index="2">
-        <svg class="svg-icon" aria-hidden="true">
-          <use xlink:href="#tmc-huiyi2"></use>
-        </svg>
-        <span slot="title">会议</span>
-      </el-menu-item>
-      <el-menu-item index="3">
-        <svg class="svg-icon" aria-hidden="true">
-          <use xlink:href="#tmc-wodebisai"></use>
-        </svg>
-        <span slot="title">比赛</span>
-      </el-menu-item>
+			
+			<router-link to="meeting">
+				<el-menu-item index="2">
+					<svg class="svg-icon" aria-hidden="true">
+						<use xlink:href="#tmc-huiyi2"></use>
+					</svg>
+					<span slot="title">会议</span>
+				</el-menu-item>
+			</router-link>
+      
+       <router-link to="speech"> 
+				<el-menu-item index="3">
+					<svg class="svg-icon" aria-hidden="true">
+						<use xlink:href="#tmc-wodebisai"></use>
+					</svg>
+					<span slot="title">演讲</span>
+				</el-menu-item>
+			 </router-link> 
+
     </el-menu>
   </div>
 </template>
@@ -54,3 +61,26 @@ export default {
 	}
 }
 </script>
+<style lang="scss" scoped>
+.hideSlidebar {
+	.slide-bar {
+		.el-menu-container {
+			a {
+				.el-menu-item {
+					span {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+.slide-bar {
+	.el-menu-container {
+		a {
+			text-decoration-line: none;
+		}
+	}
+}
+</style>
+

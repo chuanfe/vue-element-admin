@@ -3,6 +3,7 @@
     <slider-bar :isCollapse="isCollapse"></slider-bar>
     <div class="main-container">
       <nav-bar></nav-bar>
+      <admin-content></admin-content>
     </div>
   </div>
 </template>
@@ -10,24 +11,24 @@
 <script>
 import SliderBar from '../layout/slidebar'
 import NavBar from '../layout/navbar'
-import store from '../../store/index'
+import AdminContent from '../layout/adminContent'
+import { mapState } from 'vuex'
 
 export default {
   name: 'index',
   components: {
     SliderBar,
-    NavBar
+    NavBar,
+    AdminContent
   },
   data () {
     return {
       
     }
   },
-  computed: {
-    isCollapse () {
-      return store.state.isCollapse
-    }
-  },
+  computed: mapState([
+    'isCollapse'
+  ]),
   methods: {
     
   }
@@ -46,7 +47,6 @@ export default {
   bottom: 0;
   left: 0;
   z-index: 1001;
-  overflow-y: auto;
 }
 .el-menu-container:not(.el-menu--collapse) {
   width: 180px;
