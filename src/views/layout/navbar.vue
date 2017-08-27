@@ -14,8 +14,8 @@
         </el-breadcrumb>
         <div class="avatar-container">
 					<div class="login-wrap">
-						<router-link to="/account/#signin"><span>登录</span></router-link>
-						<router-link to="/account/#signup"><span>注册</span></router-link>
+						<router-link to="/accounts/#signin"><span>登录</span></router-link>
+						<router-link to="/accounts/#signup"><span>注册</span></router-link>
 					</div>
 					<el-dropdown>
 						<span class="el-dropdown-link">

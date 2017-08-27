@@ -5,11 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: { 
-    isCollapse: true
+		isCollapse: true,
+		userInfo:''
   },
   mutations: { 
     slideMenu(state) {
       state.isCollapse = !state.isCollapse
-    }
+		},
+		setUserInfo(state, data) {
+			state.userInfo = data
+		}
   }
 })
