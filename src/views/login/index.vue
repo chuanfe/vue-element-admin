@@ -31,6 +31,11 @@
 						<el-input class="input-wrap" size="large" placeholder="密码" type="password" v-model="loginForm.password"></el-input>
 					</el-form-item>
 					<el-button class="btn-large" type="primary" @click="login">登录</el-button>
+					<div class="forgetPass">
+						<router-link to="getPassword">
+							<span>忘记密码？</span>
+						</router-link>
+					</div>
 				</el-form>
 			</div>
 
@@ -39,7 +44,8 @@
 </template>
 <script>
 import axios from 'axios'
-import { isEmail } from '../../utils/validate';
+import { isEmail } from '../../utils/validate'
+import { signup, signin } from '../../resources'
 
 export default {
 	mounted () {
@@ -73,6 +79,7 @@ export default {
 			}
 		}
 	},
+
 	methods: {
 		success (message) {
 			this.$message({
@@ -109,11 +116,8 @@ export default {
 				self.warning('两次密码输入不一致')
 				return
 			}
-			axios.post('/accounts/register/', {
-				email: self.registerForm.email,
-				password1: self.registerForm.password1,
-				password2: self.registerForm.password2
-			})
+
+			signup(self.registerForm)
 			.then(function (response) {
 				self.success('恭喜你，注册成功！请重新登录')
 			})
@@ -122,6 +126,7 @@ export default {
 				self.error('注册失败')
 			})
 		},
+
 		login() {
 			let self = this
 			if(!isEmail(self.loginForm.email)) {
@@ -132,15 +137,13 @@ export default {
 				self.warning('请输入完整登录密码')
 				return
 			}
-			axios.post('/accounts/login/', {
-				email: self.loginForm.email,
-				password: self.loginForm.password
-			})
+			signin(self.loginForm)
 			.then(function (response) {
 				window.localStorage.setItem('token', response.data.token)
         window.localStorage.setItem('user', JSON.stringify(response.data.user))
         axios.defaults.headers.common['Authorization'] = 'YUHE ' + window.localStorage.getItem('token')
-        self.$store.commit('setUserInfo', response.data)
+				self.$store.commit('setUserInfo', response.data)
+				self.$router.push('/')
 			})
 			.catch(function (error) {
 				console.log(error)
@@ -150,10 +153,15 @@ export default {
 	}
 }
 </script>
+
 <style lang="scss" scoped>
 .login-container {
 	width: 300px;
 	margin: 100px auto;
+	a {
+		text-decoration-line: none;
+		color: #2c3e50;
+	}
 	.login-tab-navs {
 		margin: 20px;
 		text-align: center;
@@ -204,6 +212,13 @@ export default {
 				color: #698ebf;
 				text-decoration-line: none;
 			}
+		}
+	}
+	.forgetPass {
+		a {
+			float: right;
+			font-size: 14px;
+			margin: 15px 0;
 		}
 	}
 }
