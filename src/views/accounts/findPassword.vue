@@ -1,10 +1,10 @@
 <template>
-  <div class="get-password">
+  <div class="find-password">
 		<h3>找回密码</h3>
     <el-form autoComplete="on" label-position="right" label-width="0">
 			<el-form-item>
-					<el-input class="input-wrap" size="" placeholder="请输入注册使用邮箱" v-model="email"></el-input>
-					<el-button class="btn-large" type="primary" @click="sendEmail">发送</el-button>
+				<el-input class="input-wrap" size="" placeholder="请输入注册使用邮箱" v-model="email"></el-input>
+				<el-button class="btn-large" type="primary" @click="sendEmail">发送</el-button>
 			</el-form-item>
     </el-form>
   </div>
@@ -32,11 +32,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.get-password {
+.find-password {
 	width: 360px;
 	margin: 100px auto;
 	.input-wrap {
-			width: 260px;
+		width: 260px;
 	}
 }
 </style>

@@ -32,7 +32,7 @@
 					</el-form-item>
 					<el-button class="btn-large" type="primary" @click="login">登录</el-button>
 					<div class="forgetPass">
-						<router-link to="getPassword">
+						<router-link to="password/find">
 							<span>忘记密码？</span>
 						</router-link>
 					</div>
@@ -58,7 +58,7 @@ export default {
   data () {
 		return {
 			navigate: [{
-				name: 'siginup',
+				name: 'signup',
 				desc: '注册'
 			},{
 				name: 'signin',
@@ -102,6 +102,11 @@ export default {
 			self.active.index = index
 			// self.active.name = name
 		},
+		setLocalToken(response) {
+			window.localStorage.setItem('token', response.data.token)
+			window.localStorage.setItem('user', JSON.stringify(response.data.user))
+			axios.defaults.headers.common['Authorization'] = 'YUHE ' + window.localStorage.getItem('token')
+		},
 		register() {
 			let self = this
 			if(!isEmail(self.registerForm.email)) {
@@ -137,11 +142,10 @@ export default {
 				self.warning('请输入完整登录密码')
 				return
 			}
+
 			signin(self.loginForm)
 			.then(function (response) {
-				window.localStorage.setItem('token', response.data.token)
-        window.localStorage.setItem('user', JSON.stringify(response.data.user))
-        axios.defaults.headers.common['Authorization'] = 'YUHE ' + window.localStorage.getItem('token')
+				self.setLocalToken(response)
 				self.$store.commit('setUserInfo', response.data)
 				self.$router.push('/')
 			})

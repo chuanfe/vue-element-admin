@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/views/layout/index'
-import Login from '@/views/login/index'
-import getPassword from '@/views/login/getPassword'
+import Login from '@/views/accounts/login'
+import findPassword from '@/views/accounts/findPassword'
+import resetPassword from '@/views/accounts/resetPassword'
 
 import Meeting from '@/views/meeting/index'
 import Speech from '@/views/speech/index'
@@ -27,9 +28,14 @@ export default new Router({
       component: Login
     },
     {
-      path: '/getPassword',
-      name: 'getPassword',
-      component: getPassword
+      path: '/password/find',
+      name: 'findPassword',
+      component: findPassword
+    },
+    {
+      path: '/password/reset',
+      name: 'resetPassword',
+      component: resetPassword
     }
   ]
 })
